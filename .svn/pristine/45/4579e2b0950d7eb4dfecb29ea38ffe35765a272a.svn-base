@@ -1,0 +1,12 @@
+package kr.co.publicvoid.controller.member;
+
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+
+import lombok.extern.log4j.Log4j;
+
+@WebServlet("/member/*")
+@Log4j
+public class MemberController extends HttpServlet{
+	
+}

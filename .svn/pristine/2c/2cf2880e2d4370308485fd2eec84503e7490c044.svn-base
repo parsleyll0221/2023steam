@@ -1,0 +1,14 @@
+package kr.co.publicvoid.vo;
+
+import java.util.Date;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class PublisherVO {
+	private Long publisherNo;
+	private String publisherName;
+	private Date regDate;
+}

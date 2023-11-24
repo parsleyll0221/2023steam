@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings>
+	
+    <!-- 클래스 이름과 별칭 설정 -->
+	<typeAliases>
+	    <typeAlias type="kr.co.publicvoid.vo.MemberVO" alias="MemberVO"/>
+	    <typeAlias type="kr.co.publicvoid.vo.PublisherVO" alias="PublisherVO"/>
+	</typeAliases>
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+				<property name="url" value="jdbc:log4jdbc:mariadb://publicvoid.co.kr:3306/steam_servlet" />
+				<property name="username" value="steam" />
+				<property name="password" value="1234" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 매퍼 나열 (테이블별로 전부) -->
+	<mappers>
+		<mapper resource="kr/co/publicvoid/mapper/MemberMapper.xml" />
+		<mapper resource="kr/co/publicvoid/mapper/PublisherMapper.xml" />
+	</mappers>
+
+</configuration>

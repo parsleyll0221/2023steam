@@ -1,0 +1,23 @@
+package kr.co.publicvoid.mapper;
+
+import org.apache.ibatis.annotations.Delete;
+
+import kr.co.publicvoid.vo.ReviewVO;
+
+public interface ReviewMapper {
+int insert(ReviewVO vo);
+	
+	ReviewVO read(Long rno);
+	// 댓글 쿼리 하면 회원 게임 누구꺼지? 
+	@Delete("")
+	int delete(Long rno);
+	int deleteAll(Long gno);
+	int update(ReviewVO vo);
+
+	
+	// 이건 나중에 써보자 
+	// @Param : list 파라미터가 2개 이상시 필수
+//		List<ReplyVO> getListWithPaging(@Param("cri") Criteria criteria,@Param("bno") Long bno);
+//		int getTotal(@Param("cri") Criteria criteria,@Param("bno") Long bno);
+}
+

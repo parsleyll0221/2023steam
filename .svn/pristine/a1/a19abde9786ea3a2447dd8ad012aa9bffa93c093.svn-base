@@ -1,0 +1,9 @@
+package kr.co.publicvoid.mapper;
+
+import java.util.List;
+
+import kr.co.publicvoid.vo.MemberVO;
+
+public interface MemberMapper {
+	public List<MemberVO> getList();
+}

@@ -1,0 +1,33 @@
+package kr.co.publicvoid.config;
+
+import java.io.IOException;
+import java.io.Reader;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+// DB 연결을 위한 MyBatis용 SqlSessionFactory 관련 설정
+
+public class MyBatisSqlSessionFactory {
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	// 애플리케이션 실행 시 여기부터 올라감
+	static {
+		try {
+			// 여기서 resource의 최상단 루트는 steam/src/main/resources이다 (build path에 정의되어 있음)
+			
+			String resource = "kr/co/publicvoid/mybatis/mybatis-config.xml";
+			Reader reader = Resources.getResourceAsReader(resource);
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static SqlSessionFactory getSqlSessionFactory() {
+		return sqlSessionFactory;
+	}
+	
+}

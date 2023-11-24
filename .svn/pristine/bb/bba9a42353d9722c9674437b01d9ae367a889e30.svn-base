@@ -1,0 +1,23 @@
+package kr.co.publicvoid.mapper;
+
+import java.util.List;
+
+import kr.co.publicvoid.vo.GameVO;
+
+public interface GameMapper {
+	/**
+	 * 게임 VO > 게임 Mapper 
+	 * 
+	 * 황정민 > 박주영 
+	 * 231017 > 231018
+	 *
+	 */
+	
+	int insert(GameVO vo);
+	GameVO read(Long rno);
+	int delete(Long rno);
+	int update(GameVO vo);
+	
+//	List<E>
+
+}

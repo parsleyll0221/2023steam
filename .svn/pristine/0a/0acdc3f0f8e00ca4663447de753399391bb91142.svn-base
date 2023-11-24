@@ -1,0 +1,38 @@
+package kr.co.publicvoid.service;
+
+import java.util.List;
+
+import kr.co.publicvoid.mapper.GameLanguageMapper;
+import kr.co.publicvoid.util.MybatisUtils;
+import kr.co.publicvoid.vo.GameLanguageVO;
+
+public class GameLanguageService {
+	private GameLanguageMapper gameLanguageMapper = MybatisUtils.sqlSessionFactory().openSession(true)
+			.getMapper(GameLanguageMapper.class);
+	// 목록 조회
+	public List<GameLanguageVO> selectList() {
+		return gameLanguageMapper.selectList();
+	}
+	// 업데이트
+	public int update(GameLanguageVO gameLanguageVO) {
+		return gameLanguageMapper.update(gameLanguageVO);
+	}
+	// 단일 조회
+	public GameLanguageVO selectOne(Long gameLanguageNo) {
+		return gameLanguageMapper.selectOne(gameLanguageNo);
+	}
+	// 목록으로 게임넘버 검색 
+	public List<GameLanguageVO> selectListByGameNo(Long gameNo) {
+		return gameLanguageMapper.selectListByGameNo(gameNo);
+	}
+
+	// 생성
+	public int insert(GameLanguageVO gameLanguageVO) {
+		return gameLanguageMapper.insert(gameLanguageVO);
+	}
+	// 삭제
+	public int delete(Long gameLanguageNo) {
+		return gameLanguageMapper.delete(gameLanguageNo);
+	}
+
+}

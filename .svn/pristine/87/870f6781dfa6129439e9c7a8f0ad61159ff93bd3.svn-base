@@ -1,0 +1,5 @@
+package kr.co.publicvoid.controller.member;
+
+public class MemberController {
+
+}

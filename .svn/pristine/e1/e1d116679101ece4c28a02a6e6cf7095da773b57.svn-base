@@ -1,0 +1,15 @@
+package kr.co.publicvoid.dto;
+
+import java.util.List;
+
+import kr.co.publicvoid.vo.ReviewVO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class ReviewPageDTO {
+	private int reviewCount;
+	private List<ReviewVO> reviewList;
+	private PageDTO pageDTO;
+}

@@ -1,0 +1,20 @@
+package kr.co.publicvoid.vo;
+
+import java.util.Date;
+
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class MemberVO {
+	private Long memberNo;
+	private String memberCode;
+	private String memberId;
+	private String memberPw;
+	private String memberNickname;
+	private String memberIntroduce;
+	private int memberPoint;
+	private boolean memberPurchase;
+	private Date regDate;
+}

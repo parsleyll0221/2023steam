@@ -1,0 +1,67 @@
+package kr.co.publicvoid.dto;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+// 게임 조건에 대한 DTO
+
+@Data
+@Builder
+public class AdminSearchDTO {
+	@Builder.Default
+	private int pageNum = 1; // 현재 페이지 번호 (기본값 1)
+	
+	@Builder.Default
+	private int amount = 10;
+	
+	@Builder.Default
+	private int category = 1; // 장르번호 genreNo
+	
+	private Long genreNo; // 장르번호
+	@Builder.Default
+	private String type = "";
+	@Builder.Default
+	private String keyword = "";
+	// null
+	
+	private final TypeDetails[] typeDetails = {
+			new TypeDetails("T", "TITLE", "제목"),
+			new TypeDetails("D", "Developer", "개발사"),
+			new TypeDetails("P", "publisher", "퍼블리셔"),
+	};
+	@AllArgsConstructor
+	@Getter
+	@NoArgsConstructor(access = AccessLevel.PRIVATE)
+	private class TypeDetails {
+		String sn;
+		String ln;
+		String d;
+	}
+	
+	// 쿼리 스트링 스플릿, 조인
+		public String getQs() {
+			List<String> list = new ArrayList<>();
+			list.add("pageNum="+pageNum);
+			list.add("amount="+amount);
+			list.add("category="+category);
+			list.add("type="+type);
+			list.add("keyword="+keyword);
+			return String.join("&", list);
+		}
+		public String getQs2() {
+			List<String> list = new ArrayList<>();
+			list.add("amount="+amount);
+			list.add("category="+category);
+			list.add("type="+type);
+			list.add("keyword="+keyword);
+			return String.join("&", list);
+		}
+	
+}

@@ -1,0 +1,85 @@
+package kr.co.publicvoid.util;
+
+import java.io.IOException;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import kr.co.publicvoid.mapper.PublisherMapper;
+import kr.co.publicvoid.vo.PublisherVO;
+
+public class Crawling {
+	public static void main(String[] args) throws IOException {
+
+		// filestream 형식으로 만들기
+		// 파일 형태로 만들기
+		// 공격으로 간주하니까 전체 페이지 먼저 저장하고 파일 형태로 저장해놓고 하기
+		// 가공할 때는 파일로 만들어놨던 거에서 데이터 수집할 것
+
+		// 일단 퍼블리셔 등록할 것임
+
+		SqlSessionFactory sqlSessionFactory = MyBatisSqlSessionFactory.getSqlSessionFactory();
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		PublisherMapper publisherMapper = session.getMapper(PublisherMapper.class);
+		
+		Document doc = Jsoup.connect(
+				"https://directg.net/game/game_thumb.html?search_platform=1")
+				.get();
+
+		Elements elements = doc.select("select#search_publisher option");
+		
+		System.out.println(elements);
+		
+		for(Element e : elements) {
+			String publisherName = e.text().trim();
+			
+			PublisherVO publisherVO = PublisherVO.builder().publisherName(publisherName).build();
+			publisherMapper.insert(publisherVO);
+		}
+		
+//		for (Element e : elements) {
+//			
+//			// 일단 세 개만 넣어보기
+//			if(i >= 3) {
+//				break;
+//			}
+//			
+//			Elements aElements = e.select("a");
+//			Element aElement = aElements.first();
+//
+//			String title = aElement.attr("title");
+//			title = title.substring(0, title.length() - 2).trim();
+//			String href = aElement.attr("href");
+//
+//			System.out.println("게임명: " + title);
+//			System.out.println("링크: " + href);
+//			
+//			// 장르번호
+//			// 퍼블리셔번호
+//			// 
+//			
+//			
+//			// 일단 액션 넣을거라 장르번호는 1
+//			
+//			String url = "https://directg.net/game" + href.substring(1);
+//			Document gameDoc = Jsoup.connect(url).get();
+//
+//			Elements urlElements = gameDoc.select(".embed-responsive-item");
+//			Element urlElement = urlElements.first();
+//
+//			String urlSrc = urlElement.attr("src");
+//			System.out.println("각 게임 링크 들어가서 가져온 유튜브 URL : " + urlSrc);
+//			System.out.println("==========================");
+//			
+//			i++;
+//			
+//			
+//		}
+
+	}
+}

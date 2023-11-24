@@ -1,0 +1,15 @@
+package kr.co.publicvoid.service;
+
+import java.util.List;
+
+import kr.co.publicvoid.mapper.MemberMapper;
+import kr.co.publicvoid.util.MybatisUtils;
+import kr.co.publicvoid.vo.MemberVO;
+
+public class MemberService {
+	private MemberMapper memberMapper = MybatisUtils.sqlSessionFactory().openSession(true).getMapper(MemberMapper.class);
+	
+	public List<MemberVO> selectList() {
+		return memberMapper.getList();
+	}
+}

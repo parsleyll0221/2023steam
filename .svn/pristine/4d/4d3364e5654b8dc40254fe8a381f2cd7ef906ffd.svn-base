@@ -1,0 +1,52 @@
+package kr.co.publicvoid.service;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+
+import kr.co.publicvoid.mapper.GenreMapper;
+import kr.co.publicvoid.util.MybatisUtils;
+import kr.co.publicvoid.vo.GenreVO;
+
+public class GenreService {
+	private SqlSession sqlSession = MybatisUtils.sqlSessionFactory().openSession();
+	private GenreMapper genreMapper = MybatisUtils.sqlSessionFactory().openSession(true).getMapper(GenreMapper.class);
+
+	public List<GenreVO> getList() {
+		List<GenreVO> genreList = genreMapper.selectList();
+		
+		
+		return genreList;
+	}
+
+	// 업데이트
+	public int update(GenreVO genreVO) {
+		// TODO Auto-generated method stub
+		return genreMapper.update(genreVO);
+	}
+
+	// 단일 조회
+	public GenreVO selectOne(Long genreNo) {
+		// TODO Auto-generated method stub
+		return genreMapper.selectOne(genreNo);
+	}
+
+	// 목록 조회
+	public List<GenreVO> selectList() {
+		// TODO Auto-generated method stub
+		return genreMapper.selectList();
+	}
+
+	// 등록
+	public int insert(GenreVO genreVO) {
+		// TODO Auto-generated method stub
+		return genreMapper.insert(genreVO);
+	}
+
+	// 삭제
+	public int delete(Long genreNo) {
+		// TODO Auto-generated method stub
+		return genreMapper.delete(genreNo);
+	}
+
+}

@@ -1,0 +1,8 @@
+package kr.co.publicvoid.service;
+
+import kr.co.publicvoid.mapper.BoardMapper;
+import kr.co.publicvoid.util.MybatisUtils;
+
+public class BoardService {
+	private BoardMapper boardMapper = MybatisUtils.sqlSessionFactory().openSession().getMapper(BoardMapper.class);
+}

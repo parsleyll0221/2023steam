@@ -1,0 +1,23 @@
+package kr.co.publicvoid.persistence;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.junit.Test;
+
+import kr.co.publicvoid.config.MyBatisSqlSessionFactory;
+import kr.co.publicvoid.mapper.MemberMapper;
+import lombok.extern.log4j.Log4j;
+
+@Log4j
+public class DBTests {
+	
+	private SqlSessionFactory sqlSessionFactory = MyBatisSqlSessionFactory.getSqlSessionFactory();
+	
+	@Test
+	public void DBTest() {
+		SqlSession session = sqlSessionFactory.openSession(true);
+		
+		MemberMapper mapper = session.getMapper(MemberMapper.class);
+		mapper.getList().forEach(log::info);
+	}
+}

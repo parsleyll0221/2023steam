@@ -1,0 +1,68 @@
+package kr.co.publicvoid.mapper;
+
+import org.junit.Test;
+
+import kr.co.publicvoid.util.MybatisUtils;
+import kr.co.publicvoid.vo.GenreVO;
+import lombok.Data;
+import lombok.extern.log4j.Log4j;
+
+@Data
+@Log4j
+public class GenreMapperTests {
+
+	// 장르 메퍼 테스트
+
+	private GenreMapper genreMapper = MybatisUtils.sqlSessionFactory().openSession(true).getMapper(GenreMapper.class);
+
+	@Test
+	public void testMapper() {
+		log.info(genreMapper);
+		assert genreMapper != null : "genreMapper 변수는 null일 수 없습니다.";
+//		log.info(gameMapper);
+	}
+
+	// 전체조회 ok
+	@Test
+	public void testGetList() {
+//		log.info(gameMapper.getList(new Criteria()).size());
+//		gameMapper.getList(new Criteria()).forEach(log::info);
+		genreMapper.selectList().forEach(log::info);
+	}
+
+	// 생성 빌더 타입으로 
+	@Test
+	public void testInsert() {
+		GenreVO vo = GenreVO
+				.builder()
+				.genreName(" 장르 테스트")
+				.build();
+		log.info(vo.getGenreName());
+//		genreMapper.insert(vo);
+
+	}
+
+	// 단일조회
+	@Test
+	public void testRead() {
+		log.info(genreMapper.selectOne(5L));
+	}
+
+	// 업데이트
+	@Test
+	public void testUpdate() {
+		GenreVO vo = genreMapper.selectOne(174L);
+
+		vo.setGenreName("장르 이름 업데이트1");
+		genreMapper.update(vo);
+		log.info(vo.getGenreName());
+
+	}
+
+	// 삭제
+	@Test
+	public void testDelete() {
+		genreMapper.delete(174L);
+	}
+
+}
